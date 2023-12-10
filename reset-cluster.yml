@@ -1,0 +1,11 @@
+- name: RESET CLUSTER BOIII
+  hosts: all_server
+  gather_facts: False
+  become: true
+  tasks:
+    - name: reset cluster
+      command: kubeadm reset -f
+      register: result
+
+    - debug:
+        var: result
