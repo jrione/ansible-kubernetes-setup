@@ -1,1 +1,6 @@
-infraSetup/
+# infraSetup/
+venv/
+.env
+mykeypair.pem
+hosts
+test.yaml

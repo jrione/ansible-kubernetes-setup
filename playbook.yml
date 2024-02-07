@@ -15,10 +15,10 @@
         force_apt_get: yes
 
     - name: Set modprobe
-      command: 
-        argv: 
-          - modprobe 
-          - br_netfilter 
+      command:
+        argv:
+          - modprobe
+          - br_netfilter
           - overlay
 
     - name: add sysctl config
@@ -35,7 +35,7 @@
     - name: Disable swap
       command: swapoff -a
 
-    - name: Install containerd 
+    - name: Install containerd
       apt:
         pkg:
           - containerd
@@ -92,7 +92,7 @@
     cri_sock: /run/containerd/containerd.sock
   tasks:
     - name: Initialize cluster
-      command: kubeadm init --pod-network-cidr={{pod_cidr}} --cri-socket {{cri_sock}}
+      command: kubeadm init --pod-network-cidr={{pod_cidr}} --cri-socket {{cri_sock}} --control-plane-endpoint {{hostvars[inventory_hostname].groups.master[0]}}:6443
       register: init_output
 
     - debug:
@@ -101,11 +101,11 @@
     - name: create join command on master node
       command: kubeadm token create --print-join-command
       register: command
-      
+
     - name: Store join command to variable
       add_host:
         name: "join_command"
-        hostname: 10.10.51.240
+        hostname: "{{hostvars[inventory_hostname].groups.master[0]}}"
         commandnya: "{{command.stdout}}"
 
     - debug:

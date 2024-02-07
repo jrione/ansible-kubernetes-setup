@@ -6,6 +6,5 @@
     - name: reset cluster
       command: kubeadm reset -f
       register: result
-
     - debug:
         var: result

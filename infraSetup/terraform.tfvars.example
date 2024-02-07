@@ -1,0 +1,21 @@
+provnet_name = "YourProviderNetworkName"
+router_id    = "YourRouterID"
+
+float_ip_start  = "147"
+float_ip_end    = "150"
+float_ip_naming = ["master", "worker-1", "worker-2"]
+
+internal_network_name = "YourInternalNetworkName"
+internal_subnet_name  = "YourInternalSubnetName"
+internal_subnet_cidr  = "YourInternalSubnet"
+
+image_id       = "YourImageID"
+flavor_id      = "YourFlavorID"
+key_pair       = "YourKeypair"
+security_group = ["YourSecurityGroup"]
+
+os_username     = "YourUsername"
+os_project_name = "YourProject"
+os_password     = "YourPass"
+os_auth_url     = "YourKeystone"
+os_region       = "YourRegion"
