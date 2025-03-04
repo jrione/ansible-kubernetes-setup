@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: web
+  name: web
+  namespace: example
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: web
+    spec:
+      volumes:
+      - name: example-pv
+        persistentVolumeClaim:
+          claimName: example-pvc
+      - name: example-config
+        configMap:
+          name: example-config
+      initContainers:
+      - name: init-web
+        image: busybox
+        envFrom:
+        - secretRef:
+            name: example-secret
+        env:
+        - name: APP_NAME
+          value: "PABJI MOBEL"
+        command:
+        - sh
+        - -c
+        - |
+          set -x
+          echo $APP_NAME $USERNAME
+          sed -i "s/<<APP_NAME>>/$APP_NAME/g" /var/www/html/web/index.html
+          sed -i "s/<<USER_NAME>>/$USERNAME/g" /var/www/html/web/index.html
+          cat /var/www/html/web/index.html
+          set +x
+        volumeMounts:
+        - mountPath: "/var/www/html/web"
+          name: example-pv
+      containers:
+      - image: nginx:1.21
+        name: web
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 50m
+            memory: 64Mi
+        volumeMounts:
+        - mountPath: "/var/www/html/web"
+          name: example-pv
+        - mountPath: "/etc/nginx/nginx.conf"
+          subPath: nginx.conf
+          name: example-config
+      imagePullSecrets:
+      - name: regcred

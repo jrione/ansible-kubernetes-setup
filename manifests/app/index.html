@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        .parallax-container {
+            height: 300px;   
+        }
+    </style>
+</head>
+<body>
+
+    <div class="parallax-container">
+        <div class="parallax"><img src="https://r2.jri.one/wp/wallpaperflare.com_wallpaper.jpg" alt="Parallax Image"></div>
+    </div>
+
+    <div class="container">
+        <h2 class="center-align">The <<APP_NAME>> </h2>
+        <h3 class="center-align"> <<USER_NAME>> </h3>
+        <div class="carousel">
+            <a class="carousel-item" href="#one!"><img src="https://r2.jri.one/wp/wallpaperflare.com_wallpaper.jpg"></a>
+            <a class="carousel-item" href="#two!"><img src="https://r2.jri.one/wp/wallpaperflare.com_wallpaper.jpg"></a>
+            <a class="carousel-item" href="#three!"><img src="https://r2.jri.one/wp/wallpaperflare.com_wallpaper.jpg"></a>
+            <a class="carousel-item" href="#four!"><img src="https://r2.jri.one/wp/wallpaperflare.com_wallpaper.jpg"></a>
+            <a class="carousel-item" href="#five!"><img src="https://r2.jri.one/wp/wallpaperflare.com_wallpaper.jpg"></a>
+        </div>
+    </div>
+
+    <div class="parallax-container">
+        <div class="parallax"><img src="https://r2.jri.one/wp/wallpaperflare.com_wallpaper.jpg" alt="Parallax Image"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.parallax');
+            var instances = M.Parallax.init(elems);
+
+            var carouselElems = document.querySelectorAll('.carousel');
+            var carouselInstances = M.Carousel.init(carouselElems);
+        });
+    </script>
+</body>
+</html></div>
