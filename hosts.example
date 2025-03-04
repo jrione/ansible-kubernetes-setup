@@ -3,7 +3,7 @@ ansible_user=ubuntu
 ansible_password=thispassword
 ansible_become_pass=thispassword
 
-_version=1.32.1-00
+_version=1.32
 _cidr=10.244.0.0/16
 
 [master]
