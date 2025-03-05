@@ -59,7 +59,7 @@
   hosts: all_server
   become: true
   vars:
-    kube_version: "{{ _version }}"
+    kube_version: "{{ _version }}.2-1.1"
   tasks:
     - name: Add Kubernetes repo gpg key
       shell: |
@@ -87,7 +87,7 @@
   gather_facts: false
   become: true
   vars:
-    pod_cidr: "{{ _cidr }}.1-00"
+    pod_cidr: "{{ _cidr }}"
     cri_sock: /run/containerd/containerd.sock
   tasks:
     - name: Initialize cluster
