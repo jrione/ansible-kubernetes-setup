@@ -63,7 +63,7 @@
   tasks:
     - name: Add Kubernetes repo gpg key
       shell: |
-        curl -fsSL https://pkgs.k8s.io/core:/stable:/v{{ _version }}/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+        curl -fsSL https://pkgs.k8s.io/core:/stable:/v{{ _version }}/deb/Release.key | sudo gpg --batch --yes --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
         
     - name: Add kubernetes repo
       apt_repository:
